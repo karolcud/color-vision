@@ -1,7 +1,12 @@
+import React, { useState, useEffect } from "react";
+import Camera from "./p5/Camera";
+
 function App() {
+
   return (
     <div>
-      Hello Vercel World!
+      <div className="center">Hello Creative World!</div>
+      <Camera />
     </div>
   );
 }
