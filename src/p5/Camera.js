@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import p5 from "p5";
+import { findClosest } from "../helpers";
 
 const sketch = (p) => {
     const offset = 120;
@@ -26,6 +27,8 @@ const sketch = (p) => {
 let p5Instance;
 const Camera = () => {
     const [color, setColor] = useState(null);
+    const [averageColor, setAverageColor] = useState(null);
+    const [colorName, setColorName] = useState('');
     const p5ContainerRef = useRef();
 
     useEffect(() => {
@@ -38,10 +41,13 @@ const Camera = () => {
 
     return <>
         <div className="p5-camera" ref={p5ContainerRef} onClick={ (event) => {
-            const color = p5Instance.get(p5Instance.mouseX, p5Instance.mouseY);
-            setColor(color.slice(0, 3).join(', '));
+            const selectedColor = p5Instance.get(p5Instance.mouseX, p5Instance.mouseY).slice(0, 3);
+            setColor(selectedColor.join(', '));
+
+            const name = findClosest(selectedColor);
+            setColorName(name);
         }}/>
-        <div className="center">rgba({color})</div>
+        <div className="center">rgb({color}) - {colorName}</div>
         <div className="square" style={{backgroundColor: `rgb(${color})`}}></div>
     </>;
 }
