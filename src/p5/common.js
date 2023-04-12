@@ -1,8 +1,5 @@
-function setup(p) {
+function calculateViewportSize() {
     const ratio = 3/4;
-
-    const tmpWidth = window.innerWidth;
-    this.videoHeight = tmpWidth * ratio > window.innerHeight - this.offset
 
     if(window.innerHeight - this.offset > window.innerWidth * ratio) {
         this.videoWidth = window.innerWidth;
@@ -11,7 +8,10 @@ function setup(p) {
         this.videoHeight = window.innerHeight - this.offset;
         this.videoWidth = this.videoHeight / ratio;
     }
+}
 
+function setup(p) {
+    calculateViewportSize.call(this);
     p.createCanvas(this.videoWidth, this.videoHeight);
 
     this.capture = p.createCapture({
@@ -25,9 +25,8 @@ function setup(p) {
 }
 
 function windowResized(p) {
-    this.innerWidth = window.innerWidth;
-    this.innerHeight = window.innerHeight;
-    p.resizeCanvas(this.innerWidth, this.innerHeight - this.offset);
+    calculateViewportSize.call(this);
+    p.resizeCanvas(this.videoWidth, this.videoHeight);
 }
 
 export { setup, windowResized }

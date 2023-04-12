@@ -62,7 +62,7 @@ const CameraAim = () => {
                 { color && <>
                     rgb({color})
                     <div className="square" style={{backgroundColor: `rgb(${color})`}}></div>
-                    {colorName}
+                    <span className="uppercase">{colorName}</span>
                 </>}
             </div>
     </>;
