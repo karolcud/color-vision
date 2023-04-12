@@ -64,3 +64,7 @@ button.click-circle:active .inner-circle {
     align-items: center;
     gap: 10px;
 }
+
+.uppercase {
+    text-transform: uppercase;
+}

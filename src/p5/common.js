@@ -1,9 +1,19 @@
 function setup(p) {
-    this.innerWidth = window.innerWidth;
-    this.innerHeight = window.innerHeight;
-    this.proportionWidth = (this.innerHeight - this.offset)*4/3;
+    const ratio = 3/4;
 
-    p.createCanvas(this.innerWidth, this.innerHeight - this.offset);
+    const tmpWidth = window.innerWidth;
+    this.videoHeight = tmpWidth * ratio > window.innerHeight - this.offset
+
+    if(window.innerHeight - this.offset > window.innerWidth * ratio) {
+        this.videoWidth = window.innerWidth;
+        this.videoHeight = this.videoWidth * ratio;
+    } else {
+        this.videoHeight = window.innerHeight - this.offset;
+        this.videoWidth = this.videoHeight / ratio;
+    }
+
+    p.createCanvas(this.videoWidth, this.videoHeight);
+
     this.capture = p.createCapture({
         audio: false,
         video: {
@@ -17,7 +27,6 @@ function setup(p) {
 function windowResized(p) {
     this.innerWidth = window.innerWidth;
     this.innerHeight = window.innerHeight;
-    this.proportionWidth = (this.innerHeight - this.offset)*4/3;
     p.resizeCanvas(this.innerWidth, this.innerHeight - this.offset);
 }
 

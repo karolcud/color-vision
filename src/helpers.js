@@ -22,4 +22,7 @@ const findClosest = selectedColor => {
   return bestColor.name;
 };
 
-export { dist3d, findClosest };
+
+const inverseColor = ([r, g, b]) => [255 - r, 255 - g, 255 - b]
+
+export { dist3d, findClosest, inverseColor };

@@ -11,7 +11,7 @@ const sketchContext = {
 
         p.draw = () => {
             p.background(50, 0, 0);
-            p.image(this.capture, this.innerWidth/2 - this.proportionWidth/2, 0, this.proportionWidth, this.innerHeight - this.offset);
+            p.image(this.capture, 0, 0, this.videoWidth, this.videoHeight);
 
             // cursor
             p.fill(255, 255, 255, 0);
@@ -46,7 +46,7 @@ const CameraCursor = () => {
             { color && <>
                 rgb({color})
                 <div className="square" style={{backgroundColor: `rgb(${color})`}}></div>
-                {colorName}
+                <span className="uppercase">{colorName}</span>
             </>}
         </div>
     </>;
