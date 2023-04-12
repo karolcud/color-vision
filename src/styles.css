@@ -1,6 +1,8 @@
 body {
     margin: 0;
+    color: #FFF;
     text-align: center;
+    background-color: #000;
 }
 
 .center {
@@ -11,4 +13,48 @@ body {
     width: 25px;
     height: 25px;
     margin: auto;
+}
+
+.mode-choose {
+    display: flex;
+    justify-content: space-around;
+}
+
+input[type=radio] {
+    cursor: pointer;
+    margin: 0;
+}
+
+.radio-wrapper label {
+    cursor: pointer;
+    display: inline-block;
+    padding: 20px;
+}
+
+.p5-camera canvas {
+    border-radius: 35px;
+}
+
+button.click-circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px auto 10px;
+    padding: 0;
+    width: 55px;
+    height: 55px;
+    background-color: #000;
+    border: 2px solid #FFF;
+    border-radius: 50%;
+}
+
+.click-circle .inner-circle {
+    width: 45px;
+    height: 45px;
+    background-color: #FFF;
+    border-radius: 50%;
+}
+
+button.click-circle:active .inner-circle {
+    background-color: #DD1111;
 }
