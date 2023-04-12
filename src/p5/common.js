@@ -7,7 +7,7 @@ function setup(p) {
     this.capture = p.createCapture({
         audio: false,
         video: {
-          facingMode: 'user'
+          facingMode: 'environment'
         }
     });
 
