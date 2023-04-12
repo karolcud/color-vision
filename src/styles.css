@@ -12,7 +12,6 @@ body {
 .square {
     width: 25px;
     height: 25px;
-    margin: auto;
 }
 
 .mode-choose {
@@ -57,4 +56,11 @@ button.click-circle {
 
 button.click-circle:active .inner-circle {
     background-color: #DD1111;
+}
+
+.color-summary {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
 }

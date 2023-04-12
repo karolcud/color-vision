@@ -36,10 +36,18 @@ let p5Instance;
 const CameraAim = () => {
     const [color, setColor] = useState(null);
     const [colorName, setColorName] = useState('');
+    const [test, setTest] = useState(null);
     const p5ContainerRef = useRef();
 
     useEffect(() => {
         p5Instance = new p5(sketchContext.sketch.bind(sketchContext), p5ContainerRef.current);
+
+        (async function () {
+            const devices = await navigator.mediaDevices.enumerateDevices();
+            const x = devices.filter(source => source.kind === 'videoinput');
+            console.log('Dostępne kamery:', x);
+            setTest(x);
+        })();
 
         return () => {
             p5Instance.remove();
@@ -48,6 +56,9 @@ const CameraAim = () => {
 
     return <>
         <div className="p5-camera" ref={p5ContainerRef} />
+            {
+                test?.map((item, key) => <div key={key}>{key}. {item.label || 'empty info'}</div>)
+            }
             <button className="click-circle" onClick={ (event) => {
                 event.preventDefault();
                 const selectedColor = sketchContext.selectedColor;
@@ -58,10 +69,13 @@ const CameraAim = () => {
             }}>
                 <div className="inner-circle"></div>
             </button>
-            <div className="center">
-                { color && `rgb(${color}) - ${colorName}` }
+            <div className="color-summary">
+                { color && <>
+                    rgb({color})
+                    <div className="square" style={{backgroundColor: `rgb(${color})`}}></div>
+                    {colorName}
+                </>}
             </div>
-            <div className="square" style={{backgroundColor: `rgb(${color})`}}></div>
     </>;
 }
 

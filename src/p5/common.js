@@ -4,7 +4,13 @@ function setup(p) {
     this.proportionWidth = (this.innerHeight - this.offset)*4/3;
 
     p.createCanvas(this.innerWidth, this.innerHeight - this.offset);
-    this.capture = p.createCapture(p.VIDEO);
+    this.capture = p.createCapture({
+        audio: false,
+        video: {
+          facingMode: 'user'
+        }
+    });
+
     this.capture.hide();
 }
 

@@ -23,7 +23,6 @@ const sketchContext = {
 let p5Instance;
 const CameraCursor = () => {
     const [color, setColor] = useState(null);
-    const [averageColor, setAverageColor] = useState(null);
     const [colorName, setColorName] = useState('');
     const p5ContainerRef = useRef();
 
@@ -43,10 +42,13 @@ const CameraCursor = () => {
             const name = findClosest(selectedColor);
             setColorName(name);
         }}/>
-        <div className="center">
-            { color && `rgb(${color}) - ${colorName}` }
+        <div className="color-summary">
+            { color && <>
+                rgb({color})
+                <div className="square" style={{backgroundColor: `rgb(${color})`}}></div>
+                {colorName}
+            </>}
         </div>
-        <div className="square" style={{backgroundColor: `rgb(${color})`}}></div>
     </>;
 }
 
